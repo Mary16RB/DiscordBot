@@ -1,0 +1,12 @@
+{
+  "1": {
+    "name": "NFT Legendario",
+    "rareza": "Legendario",
+    "gif": "Avrenim.gif"
+  },
+  "442": {
+    "name": "NFT Épico",
+    "rareza": "Épico",
+    "gif": "nft_442.gif"
+  }
+}
