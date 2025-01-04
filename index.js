@@ -1,11 +1,11 @@
-
-require('dotenv').config();
+require ('dotenv').config();
 const { Client, GatewayIntentBits, EmbedBuilder } = require('discord.js');
 const fs = require('fs');
 const path = require('path');
 
 // Cargar metadatos de NFTs
-const metadatos = JSON.parse(fs.readFileSync('metadatos_nft.json', 'utf8'));
+//const metadatos = JSON.parse(fs.readFileSync('metadatos_nft.json', 'utf8')); //leer metadatos de files json
+let outputGifPath;
 
 // Crear cliente de Discord
 const client = new Client({
@@ -28,30 +28,36 @@ client.on('messageCreate', async (message) => {
 
   if (match) {
     const nftID = match[1]; // Extraer ID del NFT
-    const nft = metadatos[nftID];
 
-    if (!nft) {
-      message.channel.send('❌ No se encontró un NFT con ese ID.');
-      return;
-    }
+    outputGifPath = path.join(__dirname, 'output',`${nftID}_combinado.gif`);
+
+    //const nft = metadatos[nftID];
+
+    //if (!nft) {
+      //message.channel.send('❌ No se encontró un NFT con ese ID.');
+      //return;
+    //}
 
     // Ruta del GIF del NFT
-    const gifPath = path.join(__dirname, 'sprites', nft.gif);
+    //const gifPath = path.join(__dirname, 'sprites', nft.gif);
 
     // Verificar si el archivo existe
-    if (fs.existsSync(gifPath)) {
+    if (fs.existsSync(outputGifPath)) {
+
       const embed = new EmbedBuilder()
-        .setTitle(nft.name)
-        .setDescription(`**Rareza:** ${nft.rareza}\n**ID:** ${nftID}`)
-        .setColor(0x00ff00)
-        .setImage(`attachment://${nft.gif}`);
+        
+        .setTitle(`Piggies`)
+        .setDescription(`**NFT ID: #** ${nftID}\n[Mint Side](https://launchpad.heymint.xyz/mint/piggies)\n[View on Marketplase](https://magiceden.io/collections/polygon/0x268Fba721CFD580FE98d96f1b0249f6871D1Fa09)`)
+        .setColor(0xc45682)
+        .setImage(`attachment://${`${nftID}_combinado.gif`}`);
 
       await message.channel.send({
         embeds: [embed],
-        files: [{ attachment: gifPath, name: nft.gif }],
+        files: [{ attachment: outputGifPath, name: `${nftID}_combinado.gif` }],
+
       });
     } else {
-      message.channel.send('❌ No se encontró el GIF para este NFT.');
+      message.channel.send('❌ The NFT is not mint yet.');
     }
   }
 });
