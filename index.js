@@ -43,7 +43,7 @@ client.on('messageCreate', async (message) => {
     //const gifPath = path.join(__dirname, 'sprites', nft.gif);
 
     // Verificar si el archivo existe
-    if ((fs.existsSync(outputGifPath))&& (cont<=nftID)) {
+    if ((fs.existsSync(outputGifPath))&&(cont>=nftID)) {
 
       const embed = new EmbedBuilder()
         
