@@ -7,7 +7,7 @@ const path = require('path');
 // Cargar metadatos de NFTs
 //const metadatos = JSON.parse(fs.readFileSync('metadatos_nft.json', 'utf8')); //leer metadatos de files json
 let outputGifPath;
-
+let cont=1525;
 // Crear cliente de Discord
 const client = new Client({
   intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent],
@@ -43,7 +43,7 @@ client.on('messageCreate', async (message) => {
     //const gifPath = path.join(__dirname, 'sprites', nft.gif);
 
     // Verificar si el archivo existe
-    if (fs.existsSync(outputGifPath)) {
+    if ((fs.existsSync(outputGifPath))&& (cont<=nftID)) {
 
       const embed = new EmbedBuilder()
         
