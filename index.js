@@ -7,7 +7,7 @@ const path = require('path');
 // Cargar metadatos de NFTs
 //const metadatos = JSON.parse(fs.readFileSync('metadatos_nft.json', 'utf8')); //leer metadatos de files json
 let outputGifPath;
-let cont=1532;
+let cont=1553;
 // Crear cliente de Discord
 const client = new Client({
   intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent],
