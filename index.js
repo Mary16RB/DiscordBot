@@ -7,7 +7,7 @@ const path = require('path');
 // Cargar metadatos de NFTs
 //const metadatos = JSON.parse(fs.readFileSync('metadatos_nft.json', 'utf8')); //leer metadatos de files json
 let outputGifPath;
-let cont=1521;
+let cont=1532;
 // Crear cliente de Discord
 const client = new Client({
   intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent],
@@ -48,7 +48,7 @@ client.on('messageCreate', async (message) => {
       const embed = new EmbedBuilder()
         
         .setTitle(`Piggies`)
-        .setDescription(`**NFT ID: #** ${nftID}\n[Mint Site](https://launchpad.heymint.xyz/mint/piggies)\n[View on Marketplase](https://magiceden.io/collections/polygon/0x268Fba721CFD580FE98d96f1b0249f6871D1Fa09)`)
+        .setDescription(`**NFT ID: #** ${nftID}\n[Mint Site](https://launchpad.heymint.xyz/mint/piggies)\n[View on Marketplace](https://magiceden.io/collections/polygon/0x268Fba721CFD580FE98d96f1b0249f6871D1Fa09)`)
         .setColor(0xc45682)
         .setImage(`attachment://${`${nftID}_combinado.gif`}`);
 
