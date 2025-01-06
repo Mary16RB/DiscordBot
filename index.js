@@ -7,6 +7,8 @@ const path = require('path');
 // Cargar metadatos de NFTs
 //const metadatos = JSON.parse(fs.readFileSync('metadatos_nft.json', 'utf8')); //leer metadatos de files json
 let outputGifPath;
+let secondGifPath;
+
 let cont=1553;
 // Crear cliente de Discord
 const client = new Client({
@@ -31,7 +33,7 @@ client.on('messageCreate', async (message) => {
     const nftID = match[1]; // Extraer ID del NFT
 
     outputGifPath = path.join(__dirname, 'output',`${nftID}_combinado.gif`);
-
+    secondGifPath = path.join(__dirname, 'piggies',`${nftID}_piggy.gif`);
     //const nft = metadatos[nftID];
 
     //if (!nft) {
@@ -45,16 +47,23 @@ client.on('messageCreate', async (message) => {
     // Verificar si el archivo existe
     if ((fs.existsSync(outputGifPath))&&(cont>=nftID)) {
 
-      const embed = new EmbedBuilder()
+      const embed1 = new EmbedBuilder()
         
         .setTitle(`Piggies`)
         .setDescription(`**NFT ID: #** ${nftID}\n[Mint Site](https://launchpad.heymint.xyz/mint/piggies)\n[View on Marketplace](https://magiceden.io/collections/polygon/0x268Fba721CFD580FE98d96f1b0249f6871D1Fa09)`)
         .setColor(0xc45682)
+        .setImage(`attachment://${nftID}_piggy.gif`);
+        
+      const embed2 = new EmbedBuilder()
+        .setDescription(`Seen in PIXEL`)
+        .setColor(0xc45682)
         .setImage(`attachment://${`${nftID}_combinado.gif`}`);
-
+        
+        
       await message.channel.send({
-        embeds: [embed],
-        files: [{ attachment: outputGifPath, name: `${nftID}_combinado.gif` }],
+        embeds: [embed1, embed2],
+        files: [{ attachment: outputGifPath, name: `${nftID}_combinado.gif` },
+                { attachment: secondGifPath, name: `${nftID}_piggy.gif` }],
 
       });
     } else {
