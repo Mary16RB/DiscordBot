@@ -9,7 +9,7 @@ const path = require('path');
 let outputGifPath;
 let secondGifPath;
 
-let cont=1553;
+let cont=1555;
 // Crear cliente de Discord
 const client = new Client({
   intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent],
