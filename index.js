@@ -55,7 +55,7 @@ client.on('messageCreate', async (message) => {
         .setImage(`attachment://${nftID}_piggy.gif`);
         
       const embed2 = new EmbedBuilder()
-        .setDescription(`Seen in PIXEL`)
+        .setDescription(`Seen in PIXELS`)
         .setColor(0xc45682)
         .setImage(`attachment://${`${nftID}_combinado.gif`}`);
         
