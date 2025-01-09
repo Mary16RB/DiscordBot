@@ -1,15 +1,29 @@
 
+
 require ('dotenv').config();
 const { Client, GatewayIntentBits, EmbedBuilder } = require('discord.js');
 const fs = require('fs');
 const path = require('path');
-
+const axios = require('axios');
 // Cargar metadatos de NFTs
 //const metadatos = JSON.parse(fs.readFileSync('metadatos_nft.json', 'utf8')); //leer metadatos de files json
 let outputGifPath;
 let secondGifPath;
 
 let cont=1564;
+
+const options = {
+  method: 'GET',
+  url: 'https://api.opensea.io/api/v2/collection/piggies-4/nfts',
+  params: {
+    limit: 1
+  },
+  headers: {
+    accept: 'application/json',
+    'x-api-key': '7d4c8906f87c4dcbb8114303f0130c9b',
+  }
+};
+
 // Crear cliente de Discord
 const client = new Client({
   intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent],
@@ -35,7 +49,16 @@ client.on('messageCreate', async (message) => {
     outputGifPath = path.join(__dirname, 'output',`${nftID}_combinado.gif`);
     secondGifPath = path.join(__dirname, 'piggies',`${nftID}_piggy.gif`);
     //const nft = metadatos[nftID];
-
+    await axios
+    .request(options)
+    .then((res) => {
+      cont= res.data.nfts[0].identifier
+      //console.log(res.data);
+      console.log(cont);
+    })
+    .catch((err) => {
+      console.error('Error:', err.response?.data || err.message);
+    });
     //if (!nft) {
       //message.channel.send('❌ No se encontró un NFT con ese ID.');
       //return;
