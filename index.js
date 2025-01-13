@@ -5,6 +5,7 @@ const path = require('path');
 const axios = require('axios');
 // Cargar metadatos de NFTs
 //const metadatos = JSON.parse(fs.readFileSync('metadatos_nft.json', 'utf8')); //leer metadatos de files json
+
 let outputGifPath;
 let secondGifPath;
 
