@@ -70,7 +70,6 @@ client.on('messageCreate', async(message) => {
     // Verificar si el archivo existe
     if ((fs.existsSync(outputGifPath))&&(num>=nftID)) {
        
-
       const embed1 = new EmbedBuilder()
         
         .setTitle(`Piggies`)
