@@ -49,7 +49,6 @@ client.on('messageCreate', async(message) => {
   // Ignorar mensajes del bot
   if (message.author.bot) return;
 
-    
     const commandRegex = /^!piggies(\d+)$/;
     const match = message.content.match(commandRegex);
   
