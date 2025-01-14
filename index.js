@@ -40,7 +40,7 @@ client.on('ready', () => {
         console.error('Error de tiempo:', error);
     }
 
-}, 30000);
+}, 40000);
 
 });
 
